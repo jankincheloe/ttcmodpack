@@ -42,7 +42,7 @@ Get the Modpack here: https://www.technicpack.net/modpack/to-the-core-1165.18764
 ---
 
 
-📦 Included Core Mods
+## 📦 Included Core Mods
 
 The modpack includes the following core technical mods:
 
@@ -57,6 +57,12 @@ The modpack includes the following core technical mods:
 - **Flux Networks** – Wireless energy networks
 - **Chisel** – Design and structure elements
 - **Extended Crafting** - Advanced Crafting for way more complex recipes
+
+---
+
+## Main Goal of this Modpack
+
+Try to craft the Ultimate Singularity as fast as possible. Good luck.
 
 ---
 
