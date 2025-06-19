@@ -74,4 +74,4 @@ You can install and run programs from the `scripts/` folder in-game using a CC:T
 
 ### Download the installer
 ```lua
-wget https://raw.githubusercontent.com/jankincheloe/ttcmodpack/main/downloader/downloader.lua
+wget https://raw.githubusercontent.com/jankincheloe/ttcmodpack/main/downloader/downloader.lua downloader
