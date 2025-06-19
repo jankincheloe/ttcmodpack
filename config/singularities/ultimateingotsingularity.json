@@ -1,0 +1,12 @@
+{
+  "name": "Ultimate Ingot",
+  "colors": [
+    "12ABEF",
+    "EFBA21"
+  ],
+  "ingredient": {
+    "item": "extendedcrafting:the_ultimate_ingot",
+    "materialCount": 10
+  },
+  "inUltimateSingularity": true
+}

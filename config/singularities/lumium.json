@@ -1,0 +1,12 @@
+{
+  "name": "Lumium",
+  "colors": [
+    "EFF15C",
+    "222222"
+  ],
+  "ingredient": {
+    "item": "thermal:lumium_ingot",
+    "materialCount": 10
+  },
+  "inUltimateSingularity": true
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Queens Slime",
+  "colors": [
+    "157D17",
+    "222222"
+  ],
+  "ingredient": {
+    "item": "tconstruct:queens_slime_ingot",
+    "materialCount": 10
+  },
+  "inUltimateSingularity": true
+}

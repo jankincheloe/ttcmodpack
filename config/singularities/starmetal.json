@@ -1,0 +1,12 @@
+{
+  "name": "Starmetal",
+  "colors": [
+    "bdbcb6",
+    "222222"
+  ],
+  "ingredient": {
+    "item": "jaopca:dusts.starmetal",
+    "materialCount": 10
+  },
+  "inUltimateSingularity": true
+}

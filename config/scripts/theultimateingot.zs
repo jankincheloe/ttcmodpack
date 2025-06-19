@@ -1,0 +1,11 @@
+mods.extendedcrafting.TableCrafting.addShaped("afd4c31d-d71c-4f79-827f-01bb5e6b6d31", 0, <item:extendedcrafting:the_ultimate_ingot>, [
+	[<item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>], 
+	[<item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>], 
+	[<item:lazierae2:fluix_steel_ingot>, <item:minecraft:iron_ingot>, <item:minecraft:iron_ingot>, <item:minecraft:iron_ingot>, <item:minecraft:iron_ingot>, <item:minecraft:iron_ingot>, <item:minecraft:iron_ingot>, <item:minecraft:iron_ingot>, <item:lazierae2:fluix_steel_ingot>], 
+	[<item:minecraft:iron_ingot>, <item:minecraft:gold_ingot>, <item:thermal:signalum_ingot>, <item:minecraft:emerald>, <item:extendedcrafting:crystaltine_ingot>, <item:minecraft:emerald>, <item:mekanism:ingot_refined_obsidian>, <item:minecraft:gold_ingot>, <item:minecraft:iron_ingot>], 
+	[<item:minecraft:iron_ingot>, <item:minecraft:gold_ingot>, <item:thermal:lumium_ingot>, <item:minecraft:diamond>, <item:appliedenergistics2:singularity>, <item:minecraft:diamond>, <item:mekanism:ingot_refined_glowstone>, <item:minecraft:gold_ingot>, <item:minecraft:iron_ingot>], 
+	[<item:minecraft:iron_ingot>, <item:minecraft:gold_ingot>, <item:thermal:enderium_ingot>, <item:minecraft:netherite_ingot>, <item:minecraft:nether_star>, <item:minecraft:netherite_ingot>, <item:mekanism:ingot_steel>, <item:minecraft:gold_ingot>, <item:minecraft:iron_ingot>], 
+	[<item:lazierae2:fluix_steel_ingot>, <item:minecraft:iron_ingot>, <item:minecraft:iron_ingot>, <item:minecraft:iron_ingot>, <item:minecraft:iron_ingot>, <item:minecraft:iron_ingot>, <item:minecraft:iron_ingot>, <item:minecraft:iron_ingot>, <item:lazierae2:fluix_steel_ingot>], 
+	[<item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>], 
+	[<item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>, <item:minecraft:air>]
+]);
