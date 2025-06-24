@@ -1,29 +1,26 @@
-local component = peripheral.wrap("bottom") -- Seite anpassen: z.B. "left", "right", "top"
-local redstoneSide = "left" -- Seite für Redstone-Ausgang
-local th = 98 -- Prozenzahl der Aktivierung Ausgabe
+local component = peripheral.wrap("bottom") -- Block Reader
+local redstoneSide = "left"                -- Redstone-Ausgang
+local threshold = 98                       -- Schwellwert in %
 
--- Funktion zum Berechnen der Prozentzahl
-local function getEnergyPercentage(data)
-  local energy = data.energy or 0
-  local maxEnergy = data.maxEnergy or 1 -- Schutz gegen Division durch 0
-  return (energy / maxEnergy) * 100
-end
+local maxEnergy = 16000000                 -- Fester Maximalwert
 
 while true do
   local data = component.getBlockData()
 
-  if data then
-    local percentage = getEnergyPercentage(data)
-    print(string.format("Energie: %.2f%%", percentage))
+  if data and data.stored then
+    local energy = tonumber(data.stored)
+    local percent = (energy / maxEnergy) * 100
 
-    if percentage > th then
+    print(string.format("Energie: %.2f%%", percent))
+
+    if percent >= threshold then
       redstone.setOutput(redstoneSide, true)
     else
       redstone.setOutput(redstoneSide, false)
     end
   else
-    print("Fehler: Keine Daten vom Block Reader.")
+    print("Keine gültigen Daten vom Block Reader.")
   end
 
-  sleep(2) -- alle 2 Sekunden prüfen
+  sleep(2)
 end
