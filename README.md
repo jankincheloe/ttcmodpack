@@ -81,3 +81,6 @@ You can install and run programs from the `scripts/` folder in-game using a CC:T
 ### Download the installer
 ```lua
 wget https://raw.githubusercontent.com/jankincheloe/ttcmodpack/main/downloader/downloader.lua downloader
+```
+### Download Modpack Res
+https://www.dropbox.com/scl/fi/3gszh333p6rjz5zsgk83i/ttcmodpack-mc1.16.5-1.1.zip?rlkey=2kn89c6crkfpwa7rc2eg2pqvk&st=pld9l4gx&dl=1
