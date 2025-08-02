@@ -10,7 +10,7 @@ local config = {
   host = "<dein-host>",   -- IP oder Hostname von InfluxDB
   token = "<influx-api-key>",
   unit_conversion = 2.5, -- EU to FE o.Ä.
-  sleeptime = 1
+  sleeptime = 5
 }
 
 -- Peripherie binden
@@ -25,6 +25,11 @@ while true do
 local stored = induction.getEnergy() / config.unit_conversion
 local max = induction.getMaxEnergy() / config.unit_conversion
 local percent = induction.getEnergyFilledPercentage()
+local input = induction.getLastInput() / config.unit_conversion
+local output = induction.getLastOutput() / config.unit_conversion
+local io = induction.getTransferCap() / config.unit_conversion
+
+
 -- local ts = os.epoch("utc") / 1000  -- Zeit in Sekunden
 
 -- InfluxDB URL
@@ -35,8 +40,8 @@ local influxURL = string.format(
 
 -- Payload im Line Protocol mit Tag "system=<name>"
 local payload = string.format(
-  "energy,system=%s stored=%d,max=%d,percent=%.2f",
-  config.name, stored, max, percent -- , ts
+  "energy,system=%s stored=%d,max=%d,percent=%.2f,input=%d,output=%d,io=%d",
+  config.name, stored, max, percent, input, output, io -- , ts
 )
 
 -- Header
