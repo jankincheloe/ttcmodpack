@@ -29,13 +29,13 @@ local percent = induction.getEnergyFilledPercentage()
 
 -- InfluxDB URL
 local influxURL = string.format(
-  "http://%s:8032/api/v2/write?org=%s&bucket=%s&precision=s",
+  "https://%s/api/v2/write?org=%s&bucket=%s&precision=s",
   config.host, config.org, config.bucket
 )
 
 -- Payload im Line Protocol mit Tag "system=<name>"
 local payload = string.format(
-  "energy,system=%s stored=%d,max=%d,percent=%.2f %d",
+  "energy,system=%s stored=%d,max=%d,percent=%.2f",
   config.name, stored, max, percent -- , ts
 )
 
