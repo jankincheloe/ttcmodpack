@@ -28,7 +28,7 @@ if not monitor then error("❌ Monitor nicht gefunden!") end
 
 -- Daten an Influx senden
 local function sendToInflux(measurement, tags, fields)
-  local ts = os.epoch("utc") // 1000
+  local ts = math.floor(os.epoch("utc") / 1000)
   local tagStr = ""
   for k, v in pairs(tags) do
     tagStr = tagStr .. string.format(",%s=%s", k, v)
