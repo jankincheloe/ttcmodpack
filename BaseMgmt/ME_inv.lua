@@ -14,7 +14,8 @@ local config = {
     bucket = "minecraft",
     token = "<DEIN_TOKEN>"
   },
-  updateInterval = 10  -- in Sekunden
+  estimatedTotal = 1000000,   -- geschätzte max. Item-Anzahl im ME
+  updateInterval = 10         -- in Sekunden
 }
 
 -- ▶ Setup -----------------------------------------
@@ -54,7 +55,21 @@ local function sendToInflux(measurement, tags, fields)
   if res then res.close() end
 end
 
--- Anzeige aktualisieren
+-- Geschätzte Speicherbelegung berechnen
+local function getSimulatedStorage()
+  local totalUsed = 0
+  local items = me.listItems()
+  for _, item in pairs(items) do
+    totalUsed = totalUsed + item.amount
+  end
+  return {
+    used = totalUsed,
+    total = config.estimatedTotal,
+    percent = (totalUsed / config.estimatedTotal) * 100
+  }
+end
+
+-- Anzeige auf Monitor
 local function updateDisplay(itemData, storage, cpuBusy, channels)
   monitor.setTextScale(0.5)
   monitor.setBackgroundColor(colors.black)
@@ -67,14 +82,13 @@ local function updateDisplay(itemData, storage, cpuBusy, channels)
 
   local line = 3
   for _, entry in ipairs(itemData) do
-    local text = string.format("%s: %s", entry.label, entry.amount)
     monitor.setCursorPos(1, line)
-    monitor.write(text)
+    monitor.write(string.format("%s: %s", entry.label, entry.amount))
     line = line + 1
   end
 
   monitor.setCursorPos(1, line + 1)
-  monitor.write(string.format("Speicher: %.1f%%", (storage.used / storage.total) * 100))
+  monitor.write(string.format("Speicher: %.1f%%", storage.percent))
 
   monitor.setCursorPos(1, line + 2)
   monitor.write("Crafting: " .. (cpuBusy and "aktiv" or "frei"))
@@ -86,7 +100,7 @@ end
 -- ▶ Hauptlogik ------------------------------------
 
 while true do
-  -- Items erfassen
+  -- Items
   local items = {}
   for _, entry in ipairs(config.itemList) do
     local item = me.getItem({ name = entry.name })
@@ -95,15 +109,15 @@ while true do
     sendToInflux("me_items", { item = entry.name }, { amount = amount })
   end
 
-  -- Speicher-Info
-  local storage = me.getStorageInfo()
+  -- Speicher simulieren
+  local storage = getSimulatedStorage()
   sendToInflux("me_status", {}, {
     used = storage.used,
     total = storage.total,
-    percent = (storage.used / storage.total) * 100
+    percent = storage.percent
   })
 
-  -- CPU-Auslastung
+  -- Crafting CPUs
   local cpus = me.getCraftingCPUs()
   local busy = false
   for _, cpu in pairs(cpus) do
