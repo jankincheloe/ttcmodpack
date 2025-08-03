@@ -1,12 +1,11 @@
 -- === KONFIGURATION ===
 local influxUrl = "https://<dein-influx-url>/api/v2/write?org=<org>&bucket=minecraft&precision=s"
 local influxToken = "<DEIN_WRITE_TOKEN>"
-local reactor = peripheral.wrap("back")  -- oder "right"/"left", je nach Platzierung
-local hostname = "fission_reactor_1"     -- zur Unterscheidung in InfluxDB
+local reactor = peripheral.wrap("back")  -- oder "left", "right", je nach Platzierung
+local hostname = "fission_reactor_1"
 local apiUrl = "https://nodered.kincheloe.de/api/reactor"
 
--- === HILFSFUNKTIONEN ===
-
+-- === FUNKTION: API abfragen ===
 local function getReactorTargetState()
   local res = http.get(apiUrl)
   if res then
@@ -20,6 +19,7 @@ local function getReactorTargetState()
   end
 end
 
+-- === FUNKTION: Werte an Influx senden ===
 local function sendToInflux(fields)
   local timestamp = os.epoch("utc")
   local lines = {}
@@ -42,12 +42,11 @@ local function sendToInflux(fields)
 end
 
 -- === HAUPTSCHLEIFE ===
-
 while true do
   local targetState = getReactorTargetState()
-  local currentActive = reactor.isActive()
+  local currentActive = reactor.getStatus() == true
 
-  -- Schalten wenn nötig
+  -- Reaktorsteuerung
   if targetState == "on" and not currentActive then
     print("Reaktor wird aktiviert")
     reactor.activate()
@@ -56,9 +55,9 @@ while true do
     reactor.scram()
   end
 
-  -- Werte lesen
+  -- Daten sammeln
   local status = {
-    active = reactor.isActive() and 1 or 0,
+    active = currentActive and 1 or 0,
     temp = reactor.getTemperature(),
     fuel = reactor.getFuel(),
     maxFuel = reactor.getMaxFuel(),
